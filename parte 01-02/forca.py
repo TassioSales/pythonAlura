@@ -1,4 +1,4 @@
-import random
+from random import randrange
 
 def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
     index = 0
@@ -30,7 +30,7 @@ def carrega_palavra_secreta():
 
     arquivo.close()
 
-    numero = random.randrange(0, len(palavras))
+    numero = randrange(0, len(palavras))
     palavra_secreta = palavras[numero].upper()
     return palavra_secreta
 
