@@ -16,11 +16,11 @@ class Programa:
         return self._nome
 
     @nome.setter
-    def nome(self, novo_nome):
-        self._nome = novo_nome.title()
+    def nome(self, nome):
+        self._nome = nome
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} - {self._likes}')
+    def __str__(self):
+        return f'Nome: {self.nome} Likes: {self.likes}'
 
 
 class Filme(Programa):
@@ -28,8 +28,8 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} - {self.duracao} - {self._likes}')
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.duracao} min - Likes: {self.likes}'
 
 
 class Serie(Programa):
@@ -37,24 +37,43 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} - {self.temporadas} - {self._likes}')
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.temporadas} temporadas - Likes: {self.likes}'
+
+
+class Playlist():
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self._programas = programas
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+atlanta = Serie('atlanta', 2018, 2)
+tmep = Filme('todo mundo em panico', 1999, 100)
+demolidor = Serie('demolidor', 2016, 2)
+
 vingadores.dar_likes()
 vingadores.dar_likes()
-
-atlanta = Serie('Atlanta', 2018, 2)
+vingadores.dar_likes()
 atlanta.dar_likes()
 atlanta.dar_likes()
-atlanta.dar_likes()
+tmep.dar_likes()
+tmep.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
 
-filmes_e_series = list([vingadores, atlanta])
+listinha = [atlanta, vingadores, demolidor, tmep]
+minha_playlist = Playlist('fim de semana', listinha)
 
-for itens in filmes_e_series:
-    itens.imprime()
+for programa in minha_playlist.listagem:
+    print(programa)
 
-
-
-
+print(f'Tamanho: {len(minha_playlist.listagem)}')
