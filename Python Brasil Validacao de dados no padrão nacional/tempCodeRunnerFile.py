@@ -1,0 +1,4 @@
+
+
+cpf = CPF()
+cnpj = CNPJ()
